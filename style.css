@@ -1,0 +1,303 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f4f4f4;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.todo-container {
+    width: 650px;
+    border-radius: 10px;
+    background-color: white;
+    padding: 20px;
+}
+
+.task-input {
+    display: flex;
+    margin-bottom: 20px;
+    gap: 10px;
+}
+
+#taskInput {
+    flex-grow: 1;
+    height: 40px;
+    border-radius: 5px;
+    cursor: default;
+}
+
+button {
+    height: 40px;
+    border-radius: 5px;
+    border: none;
+    background-color: green;
+    color: white;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #218838;
+}
+
+.task {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    margin-bottom: 10px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    position: relative;
+}
+
+.task span {
+    flex-grow: 1;
+    margin-left: 10px;
+    word-wrap: break-word;
+    white-space: normal;
+    overflow-wrap: break-word;
+}
+
+.task .icons {
+    display: flex;
+    gap: 5px;
+}
+
+.crossIcon {
+    margin-left: auto;
+    user-select: none;
+}
+
+.task .icons-cross-container {
+    display: flex;
+    align-items: center;
+    gap: 5px; 
+}
+
+.task .icon {
+    width: 90px;
+    height: 40px;
+    margin-left: 10px;
+    border: 2px solid transparent;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    border-radius: 5px;
+    background-color: #ddd;
+    transition: background-color 0.3s;
+    user-select: none;
+    position: relative;
+}
+
+.icon:hover {
+    border-color: #ccc;
+}
+
+.icon .highlighted {
+    border: solid black;
+}
+
+.task:hover::after {
+    content: attr(data-state);
+    position: absolute;
+    top: -20px;
+    left: 10px;
+    background-color: #333;
+    color: white;
+    padding: 2px 5px;
+    border-radius: 3px;
+    font-size: 12px;
+}
+
+
+.tooltip {
+    visibility: hidden;
+    width: 120px; 
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    border-radius: 5px;
+    padding: 5px;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    left: 50%;
+    margin-left: -60px; 
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.icon:hover .tooltip {
+    visibility: visible;
+    opacity: 1; 
+}
+
+.additionalFunctionality{
+    display: flex;
+    flex-direction: column;
+}
+#editIcons.editIcon{
+    color: #ccc;
+}
+
+.modal {
+    display: none; 
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+}
+
+.modal.show {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    align-self: center;
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    max-width: 400px;
+    width: 90%;
+    text-align: center;
+    position: relative;
+    
+    margin: 0;
+    transform: none;
+}
+
+
+@media (max-width: 500px) {
+    .modal-content {
+        width: 95%;
+        padding: 20px;
+        margin: 0;
+    }
+}
+
+
+
+.close {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    color: #aaa;
+    font-size: 24px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.close:hover {
+    color: #555;
+}
+
+#editInput {
+    width: 90%;
+    padding: 10px;
+    margin-top: 15px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+#saveEditButton {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #218838;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+    /* width: 300px; */
+    transition: background-color 0.3s ease;
+}
+
+.saveEditButton:hover {
+    background-color: #1e7e34;
+}
+
+.modal-header {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+@media (max-width: 500px) {
+    .modal-content {
+        padding: 20px;
+        width: 95%;
+    }
+}
+
+.modal-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.delete-btn {
+    background-color: #dc3545;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.delete-btn:hover {
+    background-color: #c82333;
+}
+
+.cancel-btn {
+    background-color: #6c757d;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.cancel-btn:hover {
+    background-color: #5a6268;
+}
+
+.modal-content h2 {
+    margin-top: 0;
+    color: #333;
+}
+
+.modal-content p {
+    margin: 20px 0;
+    color: #666;
+}
+
+.close-delete {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    color: #aaa;
+    font-size: 24px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.close-delete:hover {
+    color: #555;
+}
+
